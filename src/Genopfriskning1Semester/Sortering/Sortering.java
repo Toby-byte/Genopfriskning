@@ -10,25 +10,29 @@ package Genopfriskning1Semester.Sortering;
 
 //https://www.geeksforgeeks.org/compare-two-strings-lexicographically-in-java/?ref=rp
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class Sortering {
     public static void main(String[] args) {
-        String[] names = {"abekat","musefælde","ananas","slut","solskin"};
+        ArrayList<String> names = new ArrayList<>(Arrays.asList("abekat","musefælde","ananas","slut","solskin"));
 
-        for (int i = 0; i < names.length-1; i++) {          //Check word
-            System.out.println(names[i]);
+        for (int i = 0; i < names.size()-1; i++) {
+            String firstLetterFirstWord = String.valueOf(names.get(i).charAt(0));
+            String firstLetterSecondWord = String.valueOf(names.get(i+1).charAt(0));
 
-            for (int j = 0; j < names.length-1; j++) {          //check next word
 
-                String firstLetterFirstWord = String.valueOf(names[i].charAt(0));
-                String firstLetterSecondWord = String.valueOf(names[j+1].charAt(0));
-
-                if(firstLetterFirstWord.compareTo(firstLetterSecondWord) < 0){
-                    System.out.println(firstLetterFirstWord + " is before " + firstLetterSecondWord);
-                }else{
-                    System.out.println(firstLetterFirstWord + " is the same as " + firstLetterSecondWord);
-                }
-
+            if(!(firstLetterFirstWord.compareTo(firstLetterSecondWord) < 0)){
+                System.out.println(firstLetterFirstWord + " is after " + firstLetterSecondWord);
+                Collections.swap(names, i,i+1);
+            }else{
+                System.out.println(firstLetterFirstWord + " is the same as " + firstLetterSecondWord);
             }
+
+        }
+        for (int i = 0; i < names.size() ; i++) {
+            System.out.println(names.get(i));
         }
 
 
